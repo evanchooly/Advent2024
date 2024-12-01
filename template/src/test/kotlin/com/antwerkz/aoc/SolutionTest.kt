@@ -1,6 +1,6 @@
 package com.antwerkz.aoc
 
-class DayXXSolution : TestBase() {
+class SolutionTest : TestBase() {
     override fun sampleSolutionPart1() = TODO()
 
     override fun sampleSolutionPart2() = TODO()

@@ -11,7 +11,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>someday</artifactId>
+    <artifactId>template</artifactId>
+    <properties>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
 
     <dependencies>
         <dependency>

@@ -1,6 +1,5 @@
 package com.antwerkz.aoc
 
-import com.beust.jcommander.DefaultUsageFormatter.s
 import java.io.File
 import java.net.URI
 import org.apache.hc.client5.http.fluent.Request
@@ -29,11 +28,20 @@ abstract class TestBase {
     var sample2: List<String>? = null
     lateinit var data: List<String>
 
+    val day: Int by lazy {
+        var root = File(System.getProperty("user.dir")).absoluteFile
+        while (!File(root, "pom.xml").exists()) {
+            root = root.parentFile
+        }
+        val name = root.name
+        name.substring(3).toInt()
+    }
+
     @BeforeClass
     fun downloadInput() {
         val file = File(INPUT)
         if (!file.exists() || file.length() == 0L) {
-            val url = URI("https://adventofcode.com/2024/day/${day()}/input")
+            val url = URI("https://adventofcode.com/2024/day/${day}/input")
             Request.get(url)
                 .userAgent(
                     "Mozilla/5.0 (compatible; aoc; +https://github.com/evanchooly/adventofcode2024)"
@@ -48,19 +56,17 @@ abstract class TestBase {
         sample2 = if (File(SAMPLE2).exists()) SAMPLE2.read() else sample
     }
 
-    fun day() = javaClass.simpleName.replace("Solution", "").replace("Day", "").toInt()
-
     @Test
     open fun part1() {
         samplePart1()
-        println("Solution to day ${day()} part 1:  ${solvePart1(data)}")
+        println("Solution to day ${day} part 1:  ${solvePart1(data)}")
     }
 
     @Test
     open fun part2() {
         try {
             samplePart2()
-            println("Solution to day ${day()} part 2:  ${solvePart2(data)}")
+            println("Solution to day ${day} part 2:  ${solvePart2(data)}")
         } catch (_: NotImplementedError) {
             throw SkipException("part 2 not implemented")
         }
@@ -77,7 +83,7 @@ abstract class TestBase {
 
     abstract fun solvePart1(input: List<String>): Any
 
-    open fun solvePart2(input: List<String>): Any = throw NotImplementedError()
+    abstract fun solvePart2(input: List<String>): Any
 
     fun String.read(): List<String> {
         return File(this).readLines()

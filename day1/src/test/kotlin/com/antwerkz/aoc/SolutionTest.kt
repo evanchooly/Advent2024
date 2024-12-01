@@ -1,6 +1,8 @@
 package com.antwerkz.aoc
 
-class Day1Solution : TestBase() {
+import kotlin.math.abs
+
+class SolutionTest : TestBase() {
     override fun sampleSolutionPart1() = 11
 
     override fun sampleSolutionPart2() = 31
@@ -8,7 +10,7 @@ class Day1Solution : TestBase() {
     override fun solvePart1(input: List<String>): Int {
         val (left, right) = readInput(input)
 
-        return left.zip(right).map { pair -> Math.abs(pair.first - pair.second) }.sum()
+        return left.zip(right).sumOf { pair -> abs(pair.first - pair.second) }
     }
 
     override fun solvePart2(input: List<String>): Int {
