@@ -1,5 +1,6 @@
 package com.antwerkz.aoc
 
+import com.beust.jcommander.DefaultUsageFormatter.s
 import java.io.File
 import java.net.URI
 import org.apache.hc.client5.http.fluent.Request
@@ -13,8 +14,15 @@ abstract class TestBase {
         const val INPUT = "src/test/resources/input.txt"
         const val SAMPLE = "src/test/resources/sample.txt"
         const val SAMPLE2 = "src/test/resources/sample2.txt"
-        const val SESSION_ID =
-            "53616c7465645f5fd4ddee4d01c657d6e01322003c76982c579ceb2dc98fb70edd579be9e392172e3cbf2c653107e23809eb360fcb318ba74305fed6025f59c0"
+        val SESSION_ID: String by lazy {
+            System.getenv("SESSION_ID")
+                ?: File(System.getProperty("user.dir"), ".bashrc")
+                    .readLines()
+                    .filter { s -> s.contains("AOC_SESSION") }
+                    .map { s -> s.substringAfter("=").trim() }
+                    .firstOrNull()
+                ?: throw IllegalArgumentException("SESSION_ID cannot be null")
+        }
     }
 
     lateinit var sample: List<String>
