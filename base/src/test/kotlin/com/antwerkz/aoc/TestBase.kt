@@ -40,7 +40,7 @@ abstract class TestBase {
         sample2 = if (File(SAMPLE2).exists()) SAMPLE2.read() else sample
     }
 
-    abstract fun day(): Int
+    fun day() = javaClass.simpleName.replace("Solution", "").replace("Day", "").toInt()
 
     @Test
     open fun part1() {
@@ -52,7 +52,6 @@ abstract class TestBase {
     open fun part2() {
         try {
             samplePart2()
-            println("#############################")
             println("Solution to day ${day()} part 2:  ${solvePart2(data)}")
         } catch (_: NotImplementedError) {
             throw SkipException("part 2 not implemented")

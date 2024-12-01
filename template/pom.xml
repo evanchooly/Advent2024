@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>  some day  </artifactId>
+    <artifactId>someday</artifactId>
 
     <dependencies>
         <dependency>

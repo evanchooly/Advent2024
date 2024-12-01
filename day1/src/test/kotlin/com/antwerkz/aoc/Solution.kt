@@ -1,8 +1,6 @@
 package com.antwerkz.aoc
 
 class Day1Solution : TestBase() {
-    override fun day() = 1
-
     override fun sampleSolutionPart1() = 11
 
     override fun sampleSolutionPart2() = 31
