@@ -36,7 +36,7 @@ abstract class TestBase {
         }
 
         data = INPUT.read()
-        sample = if (File(SAMPLE).exists())  SAMPLE.read() else listOf<String>()
+        sample = if (File(SAMPLE).exists()) SAMPLE.read() else listOf<String>()
         sample2 = if (File(SAMPLE2).exists()) SAMPLE2.read() else sample
     }
 

@@ -12,9 +12,7 @@ class Day1Solution : TestBase() {
     override fun solvePart1(input: List<String>): Int {
         val (left, right) = readInput(input)
 
-        return left.zip(right)
-            .map { pair -> Math.abs(pair.first - pair.second) }
-            .sum()
+        return left.zip(right).map { pair -> Math.abs(pair.first - pair.second) }.sum()
     }
 
     override fun solvePart2(input: List<String>): Int {
@@ -26,7 +24,8 @@ class Day1Solution : TestBase() {
     private fun readInput(input: List<String>): Pair<MutableList<Int>, MutableList<Int>> {
         val left = mutableListOf<Int>()
         val right = mutableListOf<Int>()
-        input.map { line -> line.replace(Regex(" +"), " ").split(" ") }
+        input
+            .map { line -> line.replace(Regex(" +"), " ").split(" ") }
             .map { values -> listOf(values[0].toInt(), values[1].toInt()) }
             .forEach { list ->
                 left += list[0]
@@ -44,11 +43,13 @@ class Day1Solution : TestBase() {
             string =
                 match?.let {
                     replaceDigits(
-                        string.replaceFirst(it, "%-${it.length}s".format("${digits.indexOf(it) + 1}")), start + it
-                            .length
+                        string.replaceFirst(
+                            it,
+                            "%-${it.length}s".format("${digits.indexOf(it) + 1}")
+                        ),
+                        start + it.length
                     )
-                }
-                    ?: replaceDigits(string, start + 1)
+                } ?: replaceDigits(string, start + 1)
         }
         return string
     }
