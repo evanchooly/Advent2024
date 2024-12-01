@@ -11,12 +11,10 @@ class Day1Solution : TestBase() {
 
     override fun solvePart1(input: List<String>): Int {
         val (left, right) = readInput(input)
-        val zip =
-            left.zip(right)
-                .map {pair -> Math.abs(pair.first - pair.second) }
-                .sum()
 
-        return zip
+        return left.zip(right)
+            .map { pair -> Math.abs(pair.first - pair.second) }
+            .sum()
     }
 
     override fun solvePart2(input: List<String>): Int {
