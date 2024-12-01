@@ -1,8 +1,6 @@
 package com.antwerkz.aoc
 
 class Day1Solution : TestBase() {
-    val digits = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
-
     override fun day() = 1
 
     override fun sampleSolutionPart1() = 11
@@ -34,23 +32,5 @@ class Day1Solution : TestBase() {
         left.sort()
         right.sort()
         return Pair(left, right)
-    }
-
-    private fun replaceDigits(it: String, start: Int = 0): String {
-        var string = it
-        if (start < string.length) {
-            var match = digits.filter { string.substring(start).startsWith(it) }.firstOrNull()
-            string =
-                match?.let {
-                    replaceDigits(
-                        string.replaceFirst(
-                            it,
-                            "%-${it.length}s".format("${digits.indexOf(it) + 1}")
-                        ),
-                        start + it.length
-                    )
-                } ?: replaceDigits(string, start + 1)
-        }
-        return string
     }
 }
