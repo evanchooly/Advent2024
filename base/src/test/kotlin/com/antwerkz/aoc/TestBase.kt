@@ -15,7 +15,7 @@ abstract class TestBase {
         const val SAMPLE2 = "src/test/resources/sample2.txt"
         val SESSION_ID: String by lazy {
             System.getenv("SESSION_ID")
-                ?: File(System.getProperty("user.dir"), ".bashrc")
+                ?: File(System.getProperty("user.home"), ".bashrc")
                     .readLines()
                     .filter { s -> s.contains("AOC_SESSION") }
                     .map { s -> s.substringAfter("=").trim() }
@@ -25,7 +25,7 @@ abstract class TestBase {
     }
 
     lateinit var sample: List<String>
-    var sample2: List<String>? = null
+    lateinit var sample2: List<String>
     lateinit var data: List<String>
 
     val day: Int by lazy {
@@ -74,8 +74,7 @@ abstract class TestBase {
 
     open fun samplePart1() = Assert.assertEquals(solvePart1(sample), sampleSolutionPart1())
 
-    open fun samplePart2() =
-        Assert.assertEquals(solvePart2(sample2 ?: sample), sampleSolutionPart2())
+    open fun samplePart2() = Assert.assertEquals(solvePart2(sample2), sampleSolutionPart2())
 
     abstract fun sampleSolutionPart1(): Any
 
