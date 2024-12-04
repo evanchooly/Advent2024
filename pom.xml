@@ -33,13 +33,6 @@
         </dependency>
     </dependencies>
 
-    <modules>
-        <module>base</module>
-        <module>template</module>
-        <module>day1</module>
-        <module>day2</module>
-    </modules>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -54,4 +47,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <modules>
+        <module>base</module>
+        <module>template</module>
+        <module>day1</module>
+        <module>day2</module>
+        <module>day3</module>
+    </modules>
+
 </project>
